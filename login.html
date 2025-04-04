@@ -300,20 +300,19 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     console.log('预设的用户名:', USERNAME);
     console.log('预设的密码:', PASSWORD);
 
-    if (inputUsername === USERNAME && inputPassword === PASSWORD) {
-        shouldRedirectIndex = true; // 登录验证成功，设置标志变量为true
-        submitBtn.innerHTML = '√ 验证成功';
-        setTimeout(() => {
-            window.location.href = '/friend/index.html';
-        }, 800);
-    } else {
-        submitBtn.innerHTML = '× 咒语错误';
-        setTimeout(() => {
-            submitBtn.innerHTML = '进入秘境';
-            passwordInput.value = '';
-        }, 1500);
-    }
-});
+if (inputUsername == USERNAME && inputPassword == PASSWORD) {
+    shouldRedirectIndex = true; // 登录验证成功，设置标志变量为true
+    submitBtn.innerHTML = '√ 验证成功';
+    setTimeout(() => {
+        window.location.href = '/friend/index.html';
+    }, 800);
+} else {
+    submitBtn.innerHTML = '× 咒语错误';
+    setTimeout(() => {
+        submitBtn.innerHTML = '进入秘境';
+        passwordInput.value = '';
+    }, 1500);
+}
 
 window.onload = () => {
     createSakura();
