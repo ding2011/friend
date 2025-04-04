@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幺妹儿的个人空间</title>
+    <link rel="stylesheet" href="/friend/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- 可收起的侧边导航 -->
+    <nav class="sidebar" id="sidebar">
+        <div class="toggle-sidebar" onclick="toggleSidebar()">
+            <i class="fas fa-chevron-left" id="sidebarIcon"></i>
+        </div>
+        <img src="assets/avatar.jpg" class="avatar" alt="头像">
+        <h2 class="sidebar-text">幺妹儿</h2>
+        <ul style="list-style:none; margin-top:1rem;">
+            <li onclick="switchView('home')" style="padding:12px; border-radius:12px; cursor:pointer; margin-bottom:8px;">
+                <i class="fas fa-home"></i> <span class="sidebar-text">主页</span>
+            </li>
+            <li onclick="switchView('diary')" style="padding:12px; border-radius:12px; cursor:pointer; margin-bottom:8px;">
+                <i class="fas fa-book"></i> <span class="sidebar-text">日记本</span>
+            </li>
+            <li onclick="switchView('countdown')" style="padding:12px; border-radius:12px; cursor:pointer; margin-bottom:8px;">
+                <i class="fas fa-clock"></i> <span class="sidebar-text">倒计时</span>
+            </li>
+            <li onclick="switchView('wishlist')" style="padding:12px; border-radius:12px; cursor:pointer;">
+                <i class="fas fa-star"></i> <span class="sidebar-text">心愿单</span>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main id="mainContent" style="margin-left:280px; padding:2rem; transition: margin-left 0.3s;">
+        <!-- 首页 朋友圈 -->
+        <section id="homeView">
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月30日17:49</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    一起看樱花吗ovo
+                </div>
+                <video id="gardenVideo" controls>
+                    <source src="assets/garden_video.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月29日12:52</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    孤独患者 - 陈奕迅
+                </div>
+                <div class="moment-content">
+                    <audio controls>
+                        <source src="assets/music.mp3" type="audio/mpeg">
+                        您的浏览器不支持音频播放
+                    </audio>
+                </div>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月28日18:16</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>姐妹还是大权威了</p >
+                    <img src="assets/1.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月21日21:03</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>小企鹅🐧</p >
+                    <img src="assets/2.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                    <img src="assets/3.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月21日17:25</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>等你读懂我的鱿鱼 我已经被做成铁板烧了TvT</p >
+                </div>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月16日15:24</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>爱使人像小孩</p >
+                    <img src="assets/4.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                    <img src="assets/5.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                </div>
+      </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月15日19:05</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>如果你连我的眼泪都不在乎 那我将没有任何武器TvT</p >
+                </div>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月9日16:48</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>阿玛提拉斯</p >
+                    <img src="assets/6.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月9日16:40</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>う手写小猫开心日志₍˄ ₗ   ̫ ₗ ˄₎੭ﾞ。</p >
+                </div>
+                <video id="gardenVideo" controls>
+                    <source src="assets/7.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+            <div class="moment-card fade-in">
+                <div class="moment-header">
+                    <img src="assets/avatar.jpg" class="moment-avatar" alt="头像">
+                    <div>
+                        <h3>幺妹儿</h3>
+                        <small>2025年3月21日21:03</small>
+                    </div>
+                </div>
+                <div class="moment-content">
+                    <p>ꉂ  ᳐  ˋ ᗜ ˊ    ᳐ฅ</p >
+                    <img src="assets/8.jpg" alt="图文内容图片" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 日记本视图 -->
+        <section id="diaryView" style="display:none;">
+            <div style="background:var(--card-bg); backdrop-filter:var(--blur); border-radius:18px; padding:1.5rem; margin-bottom:2rem;">
+                <div style="display:flex; gap:12px; margin-bottom:1rem;">
+                    <button onclick="saveDiary()" style="padding:0 24px; height:44px; background:var(--primary); color:white; border:none; border-radius:12px; cursor:pointer;">
+                        <i class="fas fa-save"></i> 保存日记
+                    </button>
+                    <input type="color" id="moodColor" style="height:44px; width:44px; border-radius:12px; border:none;">
+                </div>
+                <textarea id="diaryContent" placeholder="写下今天的感受..." style="width:100%; height:200px; padding:1rem; border-radius:12px; border:1px solid #eee; resize: none;"></textarea>
+            </div>
+            <div id="diaryContainer" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:1.5rem;"></div>
+        </section>
+
+        <!-- 倒计时视图 -->
+        <section id="countdownView" style="display:none;">
+            <div style="background:var(--card-bg); backdrop-filter:var(--blur); border-radius:18px; padding:1.5rem; margin-bottom:2rem;">
+                <h3 style="margin-bottom:1rem;">添加新倒计时</h3>
+                <div style="display:flex; gap:12px; margin-bottom:1rem;">
+                    <input type="text" id="countdownName" placeholder="事件名称" style="flex:1; padding:12px; border-radius:12px; border:1px solid #eee;">
+                    <input type="date" id="countdownDate" style="padding:12px; border-radius:12px; border:1px solid #eee;">
+                </div>
+                <button onclick="addCountdown()" style="padding:0 24px; height:44px; background:var(--secondary); color:white; border:none; border-radius:12px; cursor:pointer;">
+                    <i class="fas fa-plus"></i> 添加新倒计时
+                </button>
+            </div>
+            <div id="countdownContainer"></div>
+        </section>
+
+        <!-- 心愿单视图 -->
+        <section id="wishlistView" style="display:none;">
+            <div style="background:var(--card-bg); backdrop-filter:var(--blur); border-radius:18px; padding:1.5rem; margin-bottom:2rem;">
+                <h3 style="margin-bottom:1rem;">添加新心愿</h3>
+                <div style="display:flex; gap:12px; margin-bottom:1rem;">
+                    <input type="text" id="wishInput" placeholder="我的心愿..." style="flex:1; padding:12px; border-radius:12px; border:1px solid #eee;">
+                </div>
+                <button onclick="addWish()" style="padding:0 24px; height:44px; background:var(--secondary); color:white; border:none; border-radius:12px; cursor:pointer;">
+                    <i class="fas fa-plus"></i> 添加
+                </button>
+            </div>
+            <div id="wishlistContainer" style="display:grid; gap:1rem;"></div>
+        </section>
+    </main>
+
+    <!-- 图片查看器 -->
+    <div id="imageViewer" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:1000;">
+        <span onclick="closeImage()" style="position:absolute; top:20px; right:20px; color:white; font-size:2rem; cursor:pointer;">&times;</span>
+        < img id="viewedImage" style="max-width:90%; max-height:90%; border-radius:8px;">
+    </div>
+
+    <!-- 音乐播放器 -->
+    <div style="position:fixed; bottom:0; left:200px; right:0; height:80px; background:var(--card-bg); backdrop-filter:var(--blur); display:flex; align-items:center; padding:0 2rem; border-top:1px solid rgba(0,0,0,0.05); transition: left 0.3s;">
+        <audio id="player" controls style="width:100%;">
+            <source src="assets/music.mp3" type="audio/mpeg">
+            您的浏览器不支持音频元素
+        </audio>
+    </div>
+
+    <script src="/friend/app.js"></script>
+</body>
+
+</html>

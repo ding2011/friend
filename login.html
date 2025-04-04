@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专属空间 · 你的世界</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --main-pink: #FFE5EC;
+            --accent-pink: #FF8FAB;
+            --text-dark: #5A5A5A;
+            --win-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'M PLUS Rounded 1c', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFE5EC 0%, #FFC2D1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Windows加载动画保留 */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: loaderOut 1s 7s forwards;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 2.8rem;
+            text-align: center;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .text-stage1 { animation: textStage1 3s ease forwards; }
+        .text-stage2 { animation: textStage2 2s 3s forwards; }
+        .text-stage3 { animation: textStage3 2s 5s forwards; }
+
+        .progress-ring {
+            width: 80px;
+            height: 80px;
+            margin-top: 30px;
+            stroke-dasharray: 251;
+            stroke-dashoffset: 251;
+            animation: progressFill 6s linear forwards;
+        }
+
+        /* 日系登录表单 */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            width: 440px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 36px rgba(255, 143, 171, 0.2);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: winAppear 1s 7s forwards;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+
+        .login-container::after {
+            content: '🌸';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 60px;
+            opacity: 0.15;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 40px;
+            font-size: 28px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-pink);
+            border-radius: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            border: 2px solid #FFE5EC;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 4px rgba(255, 143, 171, 0.2);
+            padding-left: 55px;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-pink);
+            transition: all 0.3s ease;
+        }
+
+        input:focus + .input-icon {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-pink), #FF7597);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 143, 171, 0.3);
+        }
+
+        button::after {
+            content: '→';
+            position: absolute;
+            right: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        button:hover::after {
+            opacity: 1;
+            right: 15px;
+        }
+
+        /* 樱花动画 */
+        .sakura {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #FFB3C6;
+            border-radius: 50% 50% 0 50%;
+            animation: fall 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        /* 动画定义 */
+        @keyframes textStage1 {
+            0% { opacity: 0; transform: translateY(20px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        @keyframes textStage2 {
+            0% { opacity: 0; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
+        }
+
+        @keyframes textStage3 {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes progressFill {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes loaderOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes winAppear {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 樱花背景 -->
+    <div class="sakura" style="left:10%;animation-delay:0.5s"></div>
+    <div class="sakura" style="left:30%;animation-delay:1.5s"></div>
+    <div class="sakura" style="left:70%;animation-delay:2s"></div>
+
+    <!-- Windows加载动画 -->
+    <div class="loader">
+        <div class="loading-text text-stage1">别来无恙，老朋友</div>
+        <div class="loading-text text-stage2">正在准备您的专属空间...</div>
+        <div class="loading-text text-stage3">一切就绪，等你回家</div>
+        
+        <svg class="progress-ring" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="#FF8FAB" 
+                    stroke-width="8" fill="transparent"
+                    stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <!-- 日系登录表单 -->
+    <div class="login-container">
+        <h1>准备进入你的给人空间🌸</h1>
+        <form id="loginForm" autocomplete="off">
+            <div class="input-group">
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" placeholder="您的专属昵称" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" placeholder="秘密咒语" required>
+            </div>
+            <button type="submit">进入秘境</button>
+        </form>
+    </div>
+
+
+<script>
+    // 🌸 修改凭证 🌸
+    const USERNAME = '幺妹儿';
+    const PASSWORD = 'Z20250403';
+
+    // 创建更多樱花
+    function createSakura() {
+        for(let i=0; i<15; i++){
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.style.left = Math.random()*100 + '%';
+            sakura.style.animationDelay = Math.random()*5 + 's';
+            document.body.appendChild(sakura);
+        }
+    }
+
+    // 修复后的登录验证
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const usernameInput = this.querySelector('input[type="text"]');
+        const passwordInput = this.querySelector('input[type="password"]');
+        const submitBtn = this.querySelector('button');
+
+        // 去除首尾空格
+        const inputUsername = usernameInput.value.trim();
+        const inputPassword = passwordInput.value.trim();
+
+        // 调试输出
+        console.log('输入的用户名:', inputUsername);
+        console.log('输入的密码:', inputPassword);
+        console.log('预设的用户名:', USERNAME);
+        console.log('预设的密码:', PASSWORD);
+
+        if(inputUsername === USERNAME && inputPassword === PASSWORD) {
+            submitBtn.innerHTML = '✓ 验证成功';
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 800);
+        } else {
+            submitBtn.innerHTML = '✗ 咒语错误';
+            setTimeout(() => {
+                submitBtn.innerHTML = '进入秘境';
+                passwordInput.value = '';
+            }, 1500);
+        }
+    });
+
+    // 初始化
+    window.onload = () => {
+        createSakura();
+        setTimeout(() => {
+            document.querySelector('.loader').remove();
+        }, 7000);
+    }
+</script>
+</body>
+
+</html>
