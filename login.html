@@ -270,65 +270,59 @@
 
 
 <script>
-// 预设用户名和密码
-const USERNAME = '幺妹儿';
-const PASSWORD = '220250403';
-// 新增标志变量，用于控制是否跳转至首页
-let shouldRedirectIndex = false; 
+    // 🌸 修改凭证 🌸
+    const USERNAME = '幺妹儿';
+    const PASSWORD = 'Z20250403';
 
-function createSakura() {
-    for (let i = 0; i < 15; i++) {
-        const sakura = document.createElement('div');
-        sakura.className ='sakura';
-        sakura.style.left = Math.random() * 100 + '%';
-        sakura.style.animationDelay = Math.random() * 5 +'s';
-        document.body.appendChild(sakura);
-    }
-}
-
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const usernameInput = this.querySelector('input[type="text"]');
-    const passwordInput = this.querySelector('input[type="password"]');
-    const submitBtn = this.querySelector('button');
-
-    const inputUsername = usernameInput.value.trim();
-    const inputPassword = passwordInput.value.trim();
-
-    console.log('输入的用户名:', inputUsername);
-    console.log('输入的密码:', inputPassword);
-    console.log('预设的用户名:', USERNAME);
-    console.log('预设的密码:', PASSWORD);
-
-if (inputUsername == USERNAME && inputPassword == PASSWORD) {
-    shouldRedirectIndex = true; // 登录验证成功，设置标志变量为true
-    submitBtn.innerHTML = '√ 验证成功';
-    setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 800);
-} else {
-    submitBtn.innerHTML = '× 咒语错误';
-    setTimeout(() => {
-        submitBtn.innerHTML = '进入秘境';
-        passwordInput.value = '';
-    }, 1500);
-}
-
-window.onload = () => {
-    createSakura();
-    setTimeout(() => {
-        document.querySelector('.loader').remove();
-    }, 7000);
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-        window.location.href = '/friend/index.html';
-    } else if (!shouldRedirectIndex) { // 仅当标志变量为false时，才检查是否要跳转至登录页
-        const indexHref = window.location.href;
-        if (indexHref.includes('index.html')) {
-            window.location.href = 'login.html';
+    // 创建更多樱花
+    function createSakura() {
+        for(let i=0; i<15; i++){
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.style.left = Math.random()*100 + '%';
+            sakura.style.animationDelay = Math.random()*5 + 's';
+            document.body.appendChild(sakura);
         }
     }
-}
+
+    // 修复后的登录验证
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const usernameInput = this.querySelector('input[type="text"]');
+        const passwordInput = this.querySelector('input[type="password"]');
+        const submitBtn = this.querySelector('button');
+
+        // 去除首尾空格
+        const inputUsername = usernameInput.value.trim();
+        const inputPassword = passwordInput.value.trim();
+
+        // 调试输出
+        console.log('输入的用户名:', inputUsername);
+        console.log('输入的密码:', inputPassword);
+        console.log('预设的用户名:', USERNAME);
+        console.log('预设的密码:', PASSWORD);
+
+        if(inputUsername === USERNAME && inputPassword === PASSWORD) {
+            submitBtn.innerHTML = '✓ 验证成功';
+            setTimeout(() => {
+                window.location.href = '/friend/index.html';
+            }, 800);
+        } else {
+            submitBtn.innerHTML = '✗ 咒语错误';
+            setTimeout(() => {
+                submitBtn.innerHTML = '进入秘境';
+                passwordInput.value = '';
+            }, 1500);
+        }
+    });
+
+    // 初始化
+    window.onload = () => {
+        createSakura();
+        setTimeout(() => {
+            document.querySelector('.loader').remove();
+        }, 7000);
+    }
 </script>
 </body>
 
